@@ -1,0 +1,4 @@
+activate carro_autonomo
+conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
+conda install -c conda-forge kivy
+pip install matplotlib
