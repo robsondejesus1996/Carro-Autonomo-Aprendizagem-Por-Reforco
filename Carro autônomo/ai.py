@@ -58,7 +58,7 @@ class Dqn():
         
     def select_action(self, state):
         # sofmax(1,2,3) -> (0.04, 0.11, 0.85) -> (0, 0.02, 0.98)
-        probs = F.softmax(self.model(Variable(state, volatile = True)) *0) # T = 7 mudei aqui eu rob estava 100
+        probs = F.softmax(self.model(Variable(state, volatile = True)) * 0) # T = 7 estava 100
         action = probs.multinomial()
         return action.data[0,0]
     
