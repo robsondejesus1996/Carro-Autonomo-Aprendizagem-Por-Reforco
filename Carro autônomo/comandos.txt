@@ -1,3 +1,4 @@
 activate carro_autonomo
 conda install -c peterjc123 pytorch-cpu
 conda install -c conda-forge kivy
+pip install matplotlib
