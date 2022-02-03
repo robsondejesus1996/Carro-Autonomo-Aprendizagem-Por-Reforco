@@ -15,25 +15,20 @@ import torch.optim as optim
 import torch.autograd as autograd
 from torch.autograd import Variable
 
-
-
-# estrutura da rede
 class Network(nn.Module):
     def __init__(self, input_size, nb_action):
         super(Network, self).__init__()
         self.input_size = input_size
         self.nb_action = nb_action
         
-        
         self.fc1 = nn.Linear(input_size, 30)
         self.fc2 = nn.Linear(30, nb_action)
-        
         
     def forward(self, state):
         x = F.relu(self.fc1(state))
         q_values = self.fc2(x)
         return q_values
-            
+    
 class ReplayMemory(object):
     def __init__(self, capacity):
         self.capacity = capacity
@@ -42,15 +37,12 @@ class ReplayMemory(object):
     def push(self, event):
         self.memory.append(event)
         if len(self.memory) > self.capacity:
-        del self.memory[0]
-        
-        
+            del self.memory[0]
+            
     def sample(self, batch_size):
         samples = zip(*random.sample(self.memory, batch_size))
         return map(lambda x: Variable(torch.cat(x, 0)), samples)
         
-        
-                
 class Dqn():
     def __init__(self, input_size, nb_action, gamma):
         self.gamma = gamma
@@ -62,14 +54,12 @@ class Dqn():
         self.last_action = 0
         self.last_reward = 0
         
-        
-def select_action(self, state):
-        probs = F.softmax(self.model(Variable(state, volatile = True)) * 0)
+    def select_action(self, state):
+        probs = F.softmax(self.model(Variable(state, volatile = True)) * 0) 
         action = probs.multinomial()
         return action.data[0,0]
-                   
     
-def learn(self, batch_state, batch_next_state, batch_reward, batch_action):
+    def learn(self, batch_state, batch_next_state, batch_reward, batch_action):
         outputs = self.model(batch_state).gather(1, batch_action.unsqueeze(1)).squeeze(1)
         next_outputs = self.model(batch_next_state).detach().max(1)[0]
         target = self.gamma * next_outputs + batch_reward
@@ -78,7 +68,7 @@ def learn(self, batch_state, batch_next_state, batch_reward, batch_action):
         td_loss.backward(retain_variables = True)
         self.optimizer.step()
         
-def update(self, reward, new_signal):
+    def update(self, reward, new_signal):
         new_state = torch.Tensor(new_signal).float().unsqueeze(0)
         self.memory.push((self.last_state, new_state, torch.LongTensor([int(self.last_action)]),
                      torch.Tensor([self.last_reward])))
@@ -94,12 +84,19 @@ def update(self, reward, new_signal):
             del self.reward_window[0]
         return action
     
+    def score(self):
+        return sum(self.reward_window) / (len(self.reward_window) + 1.)
     
-def score(self):
-        return sum(self.reward_window) / (len(self.reward_window) + 1.)  
+    def save(self):
+        torch.save({'state_dict': self.model.state_dict(),
+                    'optimizer': self.optimizer.state_dict()}, 'last_brain.pth')
     
+    def load(self):
+        if os.path.isfile('last_brain.pth'):
+            checkpoint = torch.load('last_brain.pth')
+            self.model.load_state_dict(checkpoint['state_dict'])
+            self.optimizer.load_state_dict(checkpoint['optimizer'])
+            print('Carregado com sucesso')
+        else:
+            print('Erro ao carregar')
     
-    
-            
-            
-        
