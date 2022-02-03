@@ -1,4 +1,8 @@
-# Importação das bibliotecas
+# -*- coding: utf-8 -*-
+"""
+
+@author: Robson de Jesus
+"""
 
 import numpy as np
 import random

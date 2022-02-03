@@ -1,6 +1,8 @@
-# Criação do mapa e do carro autônomo
+# -*- coding: utf-8 -*-
+"""
 
-# Importação das bibliotecas
+@author: Robson de Jesus
+"""
 import numpy as np
 from random import random, randint
 import matplotlib.pyplot as plt
