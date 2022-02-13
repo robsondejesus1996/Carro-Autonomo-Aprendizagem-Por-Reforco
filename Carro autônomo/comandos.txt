@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Feb  2 18:58:47 2022
+
+@author: Robson de Jesus
+"""
+
 activate carro_autonomo
 conda install -c peterjc123 pytorch-cpu
 conda install -c conda-forge kivy
