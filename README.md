@@ -21,6 +21,8 @@ Trabalho realizado para a disciplina de Inteligência Computacional do [Centro d
 * [Técnica](#tecnica)
 * [Niveis de Resultados](#resultados)
 * [Vídeo](#Vídeo)
+* [Instrução de Uso](#instrucao)
+* [Referencias](#Referencias)
 
 ---
 
@@ -38,11 +40,13 @@ Trabalho realizado para a disciplina de Inteligência Computacional do [Centro d
 ## [Introdução](#introdução)
 
 <p>
-O aprendizado por reforço, ou reinforcement learning, possui aplicações e usos fantásticos. Muitas vezes assustadores ao terem se tornado melhores que humanos eleitos mundialmente como melhores em determinada área.
+
+O aprendizado por reforço, ou reinforcement learning, possui aplicações e usos fantásticos. Muitas vezes assustadores ao terem se tornado melhores que humanos eleitos mundialmente como melhores em determinada área. (Deeplearningbook, 2018)
 </p>
 
+
 <p>
-O funcionanmento desse trabalho vai ser meio parecido com o cenário de ensinar novos truques a um cachorro. Pense que o cão não entende nossa língua, então não podemos dizer a ele o que fazer. Em vez disso, seguimos uma estratégia diferente. Imitamos uma situação e esse cão tenta reagir de muitas maneiras diferentes. Se a resposta do cão for a desejada, nós o recompensamos com uma comida diferente. Agora da proximá vez que o cão for exposto a mesma situação, ele executará uma ação semelhante com ainda mais entusiasmo na expectativa de mais comida. Então basicamente o trabalho que será desenvolvido terá esse objetivo, é como aprender "o que fazer" com experiências positivas. 
+O funcionanmento desse trabalho vai ser meio parecido com o cenário de ensinar novos truques a um cachorro. Pense que o cão não entende nossa língua, então não podemos dizer a ele o que fazer. Em vez disso, seguimos uma estratégia diferente. Imitamos uma situação e esse cão tenta reagir de muitas maneiras diferentes. Se a resposta do cão for a desejada, nós o recompensamos com uma comida diferente. Agora da proximá vez que o cão for exposto a mesma situação, ele executará uma ação semelhante com ainda mais entusiasmo na expectativa de mais comida. Então basicamente o trabalho que será desenvolvido terá esse objetivo, é como aprender "o que fazer" com experiências positivas. (Petz, 2021)
 </p>
 
 
@@ -97,6 +101,8 @@ last_reward = 0.1 # ganha uma pequena recompensa positiva <br>
 
 ## [Técnica](#tecnica)
 
+
+<h1> Técnica, linguagem, algoritmo e biblioteca usado abaixo:</h1>
 - Aprendizagem por Reforço
 - Python 
 - Deep Learning
@@ -105,26 +111,25 @@ last_reward = 0.1 # ganha uma pequena recompensa positiva <br>
 
 
 <h1> Aplicação da Técnica no problema </h1>
-<p><p>
+
+![equacao](https://user-images.githubusercontent.com/31260719/154358635-81f1d36d-e188-4720-aa1a-73f6b405f32b.png)
+
+
+<p>A técnica de sistema desenvolvido será de aprendizagem por reforço com intuição Deep Q-Learning, basicamente serão 5 entradas que tem na rede neural, então o carro tem 3 sensores (um na esquerda, um na direita, e outro no meio) esse sensores serão utilizados como entrada da rede neural. E além disso é utilizado a direção que nada mas é que a rodação do carro(direita, esquerda) 5 entradas = 3 sensores + duas direções. Então basicamente o algoritmo de Deep Q-Learning vai resolver o problema do meu agente no ambiente. <p>
 
 
 <h1> Estados e Ações </h1>
-<p><p>
+<p>Existe 3 ações no sistema, o carro ir para frente, para a esquerda, ou para a direita. Essa ações equivale as saídas da rede neural(camada de saída)<p>
 
 <h1> Calculo da Recompensa </h1>
-<p><p>
 
+![experiencia](https://user-images.githubusercontent.com/31260719/154359915-316ea1cf-d03c-4d1b-bde2-ff5cd532485a.png)
 
-
-<h1> Recompensas positivas e negativas </h1>
-<p><p>
-
-<h1> Calculo da Recompensa </h1>
-<p><p>
+<p>Basicamente na inicialização o valor médio das recompensas tem uma relação ao tempo de execução do ambiente, basicamente na experiência de replay vai ser armazenado as recompensas que tem no caminho, podendo fazer a média das recompensas em um determinado periodo. Como já foi dito se o carro for para areia ele acaba diminuindo a velocidade e vai ganhar uma recompensa negativa. <p>
 
 
 <h1>taxa de aprendizagem e fator de desconto </h1>
-<p><p>
+<p>A taxa de fator de desconto é 0,9 que é o valor do gamma  (y = 0.9) <p>
 
 
 
@@ -198,30 +203,27 @@ Coisas para se alterar:
 
 <ul>
     <b>Alterações possíveis:</b><br>
-    <li> 1 - Adicionar mais camadas ocultas:</li>
+     1 - Adicionar mais camadas ocultas:<br>
 
 ![camadas](https://user-images.githubusercontent.com/31260719/154278826-19497c85-1dc2-408a-8379-50ca349f1e6d.png)
 
-    <li> 2 - Pode aumentar a quantidade de neurônios </li>
-    <li> 3 - Pode-se alterar o parâmetro da temperatura </li>
+     2 - Pode aumentar a quantidade de neurônios  
+     3 - Pode-se alterar o parâmetro da temperatura  
 
 ![temp](https://user-images.githubusercontent.com/31260719/154279081-421a0ac4-596a-4169-934d-95c98b799de4.png)
 
 
-    <li> 4 - Pode usar outras funções de erro</li>
-    <li> 5 - Pode utilizar outros tipos de utilizadores (é utilizado o Adan, mas também tem o rms)</li>
+     4 - Pode usar outras funções de erro
+     5 - Pode utilizar outros tipos de utilizadores (é utilizado o Adan, mas também tem o rms)
 
 ![adam](https://user-images.githubusercontent.com/31260719/154279308-d53460ab-27f6-4312-92e6-8d3cb2df8b1b.png)
 
 
-    <li> 6 - Com relação ao mapa pode dentar diminuir os valores das recompensas. </li>
+     6 - Com relação ao mapa pode dentar diminuir os valores das recompensas.
 
 ![recompensas](https://user-images.githubusercontent.com/31260719/154279715-faf89e2b-aab1-4f17-b2f2-d4d5bc0d5fb0.png)
 
 </ul>
-
-
-
 
 
 ## [Vídeo](#Vídeo)
@@ -229,3 +231,36 @@ Coisas para se alterar:
 >Figura : Video Apresentação trabalho (clique para abrir no YouTube)
 
 [![capa](https://user-images.githubusercontent.com/31260719/154288443-0e2c6179-bff8-40ac-a954-6bd8f8f48384.png)](https://www.youtube.com/watch?v=bi5DT2NcGME&ab_channel=robsonjesus)
+
+
+
+## [Instrução de Uso](#instrucao)
+
+1) Instale o Anaconda navigator (anaconda3)<br>
+2) No ambiente anaconta basicamente entre na opção para criar o ambiente de desenvolvimento em (Environments) nessa opçao tem uma função de criação chamada "create". Basicamente defina um nome para o projeto a versão do python deve ser a 3.6.13. <br>
+
+![criação projeto](https://user-images.githubusercontent.com/31260719/154360909-43ae02c7-bf37-4d55-8fb1-e6837980aec7.png)
+
+3)Com o ambiente criado entre na opção de home e certifique-se que está na opção de applications on = nome do projeto que você criou. Basicamente nesta etapa tem que se instalar no ambiente o Spyder 5.0.5. <br>
+
+![instalacao](https://user-images.githubusercontent.com/31260719/154361459-d4b37032-a148-40a8-b38d-c590ec3492f7.png)
+
+4) Execute o Spyder no ambiente de desenvolvimento. <br>
+
+5) Temos que instalar mais algumas dependecias do projeto, execute o Anaconda Prompt e insira os comandos abaixo: <br>
+activate carro_autonomo <br>
+conda install -c peterjc123 pytorch-cpu <br>
+conda install -c conda-forge kivy <br>
+pip install matplotlib <br>
+
+6) com o Spyder rodando no canto superior esquerdo abra o projeto no caminho do arquivo, basicamente pode abrir o arquivo map.py e rodar a aplicação que vai funcionar. 
+
+![rodando](https://user-images.githubusercontent.com/31260719/154362695-5e17bc8b-3440-43af-ae97-7299efa41808.png)
+
+
+## [Referencias](#Referencias)
+O Deeplearningbook [Site de noticias].disponivel em: <br>
+<https://www.deeplearningbook.com.br/aplicacoes-da-aprendizagem-por-reforco-no-mundo-real/#:~:text=O%20Aprendizado%20por%20Refor%C3%A7o%20(ou,de%20maximizar%20as%20recompensas%20totais.&text=Isso%20%C3%A9%20o%20Aprendizado%20por%20Refor%C3%A7o.><br>
+
+O petz [Site de noticias].disponivel em: <br>
+<https://www.petz.com.br/blog/bem-estar/caes-bem-estar/ensinar-reforco-positivo/>
